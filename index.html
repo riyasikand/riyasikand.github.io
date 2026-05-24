@@ -1,13 +1,520 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Riya Sikand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#fafaf9;color:#1a1a18;font-size:14px;line-height:1.6}
+a{color:#2563eb;text-decoration:none}
+a:hover{text-decoration:underline}
+
+nav{position:sticky;top:0;z-index:100;background:#fafaf9;border-bottom:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-between;padding:13px 40px}
+nav .brand{font-size:14px;font-weight:500;color:#1a1a18}
+nav ul{list-style:none;display:flex;gap:22px}
+nav ul a{font-size:13px;color:#555;transition:color .15s}
+nav ul a:hover{color:#1a1a18;text-decoration:none}
+nav ul a.active{color:#1a1a18;font-weight:500;border-bottom:2px solid #1a1a18;padding-bottom:1px}
+
+.page{max-width:580px;margin:0 auto;padding:44px 24px 100px}
+
+.hero{display:flex;gap:20px;align-items:flex-start;margin-bottom:28px}
+.avatar{width:80px;height:80px;border-radius:50%;flex-shrink:0;overflow:hidden;}
+.avatar img{width:100%;height:100%;object-fit:cover;}
+.hero-info h1{font-size:22px;font-weight:600;margin-bottom:3px}
+.hero-info .sub{font-size:13px;color:#555;margin-bottom:10px}
+.hero-icons{display:flex;gap:14px}
+.hero-icons a{color:#888;font-size:15px;transition:color .15s;text-decoration:none}
+.hero-icons a:hover{color:#1a1a18}
+
+.bio p{font-size:14px;color:#222;line-height:1.8;margin-bottom:14px}
+.bio p:last-child{margin-bottom:0}
+.bio strong{font-weight:600}
+
+.divhead{text-align:center;font-size:13px;font-weight:500;color:#444;padding:14px 0;border-top:1px solid rgba(0,0,0,0.09);border-bottom:1px solid rgba(0,0,0,0.09);margin:28px 0 16px}
+
+.edu-row{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:start;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.06)}
+.edu-row:last-child{border-bottom:none}
+.edu-icon{width:28px;height:28px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.edu-name{font-size:13.5px;font-weight:500}
+.edu-deg{font-size:12px;color:#666;margin-top:2px}
+.edu-right{text-align:right;white-space:nowrap}
+.edu-loc{font-size:12px;color:#555}
+.edu-dates{font-size:12px;color:#aaa}
+
+.rex-row{padding:9px 0;border-bottom:1px solid rgba(0,0,0,0.06)}
+.rex-row:last-child{border-bottom:none}
+.rex-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.rex-name{font-size:13.5px;font-weight:500}
+.rex-loc{font-size:12px;color:#888;white-space:nowrap;flex-shrink:0}
+.rex-bot{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.rex-role{font-size:12px;color:#555}
+.rex-dates{font-size:12px;color:#aaa;white-space:nowrap;flex-shrink:0}
+.rex-bullets{list-style:none;margin-top:5px}
+.rex-bullets li{font-size:12px;color:#555;line-height:1.6;padding:1px 0;display:flex;gap:6px}
+.rex-bullets li::before{content:'·';color:#bbb;flex-shrink:0}
+
+.sec h2{font-size:20px;font-weight:600;margin-bottom:12px}
+.sec{margin-top:48px;scroll-margin-top:56px}
+.sec-intro{font-size:14px;color:#333;line-height:1.8;margin-bottom:20px}
+
+.rcard{border:1px solid rgba(0,0,0,0.1);border-radius:8px;padding:16px;margin-bottom:12px}
+.rcard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px}
+.rcard-title{font-size:13.5px;font-weight:600}
+.rcard-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px}
+.rcard-desc{font-size:13px;color:#444;line-height:1.65;margin-bottom:10px}
+.rcard-link{font-size:12px;color:#2563eb}
+
+.pub-note{font-size:13px;color:#333;line-height:1.75;margin-bottom:14px}
+.pub-yr{font-size:15px;font-weight:600;margin:20px 0 10px}
+.pub-row{display:grid;grid-template-columns:56px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid rgba(0,0,0,0.06);align-items:start}
+.pub-row:last-child{border-bottom:none}
+.pub-thumb{width:56px;height:44px;border-radius:4px;overflow:hidden;flex-shrink:0}
+.pub-thumb div{width:100%;height:100%}
+.pub-title{font-size:13.5px;color:#1a1a18;line-height:1.4;margin-bottom:3px;font-weight:500}
+.pub-authors{font-size:12px;color:#666;margin-bottom:2px;line-height:1.4}
+.pub-venue{font-size:12px;color:#888;font-style:italic;margin-bottom:6px}
+.pub-btns{display:flex;gap:5px;flex-wrap:wrap}
+.pbtn{font-size:11px;padding:3px 8px;border:1px solid rgba(0,0,0,0.14);border-radius:4px;color:#444;background:#fff;cursor:pointer}
+.me{color:#dc2626;font-weight:500}
+
+.award-group{font-size:14px;font-weight:600;margin:20px 0 8px}
+.award-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.06);cursor:pointer;gap:8px}
+.award-row:hover .award-name{text-decoration:underline}
+.award-left .award-name{font-size:13.5px;font-weight:500}
+.award-left .award-org{font-size:12px;color:#888;margin-top:1px}
+.award-chev{color:#bbb;font-size:13px;flex-shrink:0}
+.award-body{display:none;font-size:13px;color:#555;line-height:1.65;padding:8px 0 12px;border-bottom:1px solid rgba(0,0,0,0.06)}
+
+.ec-row{padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.06)}
+.ec-row:last-child{border-bottom:none}
+.ec-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.ec-name{font-size:13.5px;font-weight:500}
+.ec-loc{font-size:12px;color:#888;white-space:nowrap;flex-shrink:0}
+.ec-role{font-size:12px;color:#2563eb;font-weight:500;margin-bottom:3px}
+.ec-dates{font-size:12px;color:#aaa;white-space:nowrap;flex-shrink:0}
+.ec-bullets{list-style:none;margin-top:4px}
+.ec-bullets li{font-size:12px;color:#555;line-height:1.6;padding:1px 0;display:flex;gap:6px}
+.ec-bullets li::before{content:'·';color:#bbb;flex-shrink:0}
+.ec-section-title{font-size:14px;font-weight:600;margin:20px 0 8px;color:#1a1a18}
+
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.skill-group{background:#f5f3ef;border-radius:8px;padding:14px}
+.skill-group-title{font-size:12px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:5px}
+.skill-tag{font-size:11.5px;padding:3px 8px;background:#fff;border:1px solid rgba(0,0,0,0.1);border-radius:4px;color:#444}
+
+footer{margin-top:60px;padding-top:18px;border-top:1px solid rgba(0,0,0,0.08);font-size:12px;color:#bbb;text-align:center}
+</style>
 </head>
 <body>
 
-    Hellllllooooooo
-    
+<nav id="topnav">
+  <span class="brand">Riya Sikand</span>
+  <ul>
+    <li><a href="#bio" class="active">Biography</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#extracurriculars">Extracurriculars</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <!-- ======== BIO ======== -->
+  <section class="sec" id="bio" style="margin-top:0">
+    <div class="hero">
+      <div class="avatar">
+        <img src="data:image/jpeg;base64,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" alt="Riya Sikand">
+      </div>
+      <div class="hero-info">
+        <h1>Riya Sikand</h1>
+        <div class="sub">Computer Science &amp; Molecular Biology · Harvard University '28</div>
+        <div class="hero-icons">
+          <a href="mailto:riyasikand@college.harvard.edu" title="Email">✉</a>
+          <a href="https://www.linkedin.com/in/riya-sikand/" title="LinkedIn" target="_blank">in</a>
+          <a href="https://github.com/riyasikand" title="GitHub" target="_blank">⌥</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bio">
+      <p>I am an undergraduate at <strong>Harvard University</strong> pursuing an A.B. in Computer Science with a double concentration in Molecular &amp; Cellular Biology and a secondary in Government (Class of 2028). I am a <strong>John Harvard Scholar</strong> with a 4.0 GPA, passionate about applying computational methods and AI to solve problems at the intersection of biology, medicine, and technology.</p>
+      <p>My research spans cancer immunology, synthetic biology, and machine learning — from studying CD8+ T cell memory at <strong>Dana-Farber Cancer Institute</strong> to building biocomputing systems in bacteria at Harvard MCB Department's Cluzel Lab. I am especially interested in how AI and data-driven approaches can accelerate discovery in biomedicine.</p>
+      <p>Beyond research, I work at the intersection of technology, venture capital, and entrepreneurship — as a diligence analyst at <strong>Harvard Undergraduate Capital Partners</strong>, a former Strategy &amp; Operations Lead at <strong>Wedge (YC S25)</strong>, and a computational biology intern at <strong>Novaflow (YC S25)</strong>. I also serve on the executive boards of Harvard Model Congress and the Harvard Undergraduate Biotechnology Club.</p>
+      <p>I also enjoy learning, and writing, about history — read my research <a href="https://www.theconcordreview.com" target="_blank">here</a>. I also competed as a finalist in the 2021 Regeneron ISEF.</p>
+    </div>
+
+    <div class="divhead">Education</div>
+    <div>
+      <div class="edu-row">
+        <div class="edu-icon" style="background:#fee2e2;color:#b91c1c">H</div>
+        <div>
+          <div class="edu-name">Harvard University</div>
+          <div class="edu-deg">A.B. in Computer Science, Double Concentration in Molecular &amp; Cellular Biology, Secondary in Government<br>
+          <span style="color:#888">GPA: 4.0/4.0 · John Harvard Scholar</span></div>
+        </div>
+        <div class="edu-right"><div class="edu-loc">Cambridge, MA</div><div class="edu-dates">Expected May 2028</div></div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-icon" style="background:#f0fdf4;color:#15803d">R</div>
+        <div>
+          <div class="edu-name">Ranney School</div>
+          <div class="edu-deg">Valedictorian · GPA: 102/100 · SAT: 1550</div>
+        </div>
+        <div class="edu-right"><div class="edu-loc">Tinton Falls, NJ</div><div class="edu-dates">May 2024</div></div>
+      </div>
+    </div>
+
+    <div class="divhead">Research Experience</div>
+    <div>
+      <div class="rex-row">
+        <div class="rex-top"><span class="rex-name">Dana-Farber Cancer Institute &amp; Harvard Medical School</span><span class="rex-loc">Boston, MA</span></div>
+        <div class="rex-bot"><span class="rex-role">Research Intern, Dr. Stephanie Dougan Lab · Summer Immunology Program Scholar</span><span class="rex-dates">June 2025 – Present</span></div>
+        <ul class="rex-bullets">
+          <li>Analyzing the effects of TNF&#945; and CDK4/6 inhibitors on CD8+ T cell memory potentiation</li>
+          <li>Conducted RNA isolation, reverse transcription to cDNA, qPCR, ELISA, and flow cytometry; R for data analysis and visualization</li>
+        </ul>
+      </div>
+      <div class="rex-row">
+        <div class="rex-top"><span class="rex-name">Harvard MCB Department's Cluzel Lab</span><span class="rex-loc">Cambridge, MA</span></div>
+        <div class="rex-bot"><span class="rex-role">Research Intern, Dr. Philippe Cluzel Lab</span><span class="rex-dates">January – May 2025</span></div>
+        <ul class="rex-bullets">
+          <li>Project: Digital Biocomputing in Bacteria using DNA-looping</li>
+          <li>Constructed chromosomal and plasmid toggle switches; used PCR, electroporation, flow cytometry, and Benchling</li>
+        </ul>
+      </div>
+      <div class="rex-row">
+        <div class="rex-top"><span class="rex-name">Rutgers University School of Engineering, Materials Science</span><span class="rex-loc">New Brunswick, NJ</span></div>
+        <div class="rex-bot"><span class="rex-role">Research Intern, O'Carroll Research Group</span><span class="rex-dates">June – December 2023</span></div>
+        <ul class="rex-bullets">
+          <li>Published: "Application of Nanoimprint Lithography to Conducting Polymers for Infrared Photonics," IEEE URTC 2023</li>
+          <li>Project: GaitSense — a novel 3D-printed PEDOT:PSS piezoresistive pressure sensor for gait analysis</li>
+        </ul>
+      </div>
+      <div class="rex-row">
+        <div class="rex-top"><span class="rex-name">University of Illinois Rockford College of Medicine</span><span class="rex-loc">Remote</span></div>
+        <div class="rex-bot"><span class="rex-role">Data Visualization Research Intern, Dr. Neelu Puri Lab</span><span class="rex-dates">Aug 2022 – July 2023</span></div>
+        <ul class="rex-bullets">
+          <li>Publication: "PRMT-1 and p120-Catenin as EMT Mediators in Osimertinib Resistance in NSCLC" — MDPI Cancers</li>
+        </ul>
+      </div>
+      <div class="rex-row">
+        <div class="rex-top"><span class="rex-name">Waksman Institute, Rutgers University</span><span class="rex-loc">New Brunswick, NJ</span></div>
+        <div class="rex-bot"><span class="rex-role">Research Intern</span><span class="rex-dates">June 2023</span></div>
+        <ul class="rex-bullets">
+          <li>Sequenced 4 duckweed gene clones; published in NCBI GenBank</li>
+          <li>PCR amplification, restriction enzyme digestion, agarose gel electrophoresis, BLAST alignment</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== RESEARCH ======== -->
+  <section class="sec" id="research">
+    <h2>Research</h2>
+    <p class="sec-intro">I work at the intersection of computational methods and experimental biology, with the goal of using AI and data-driven approaches to advance understanding of disease and accelerate therapeutic discovery. My current areas of focus include:</p>
+
+    <div class="rcard">
+      <div class="rcard-top">
+        <div class="rcard-title">Cancer immunology &amp; translational biology</div>
+        <div class="rcard-icon" style="background:#fee2e2">🔬</div>
+      </div>
+      <div class="rcard-desc">Studying how cytokines and small molecule inhibitors modulate immune cell behavior, with a focus on CD8+ T cell memory potentiation in cancer contexts. Using wet lab techniques including flow cytometry, qPCR, and ELISA alongside computational analysis in R.</div>
+    </div>
+
+    <div class="rcard">
+      <div class="rcard-top">
+        <div class="rcard-title">Machine learning for biomedical imaging &amp; genomics</div>
+        <div class="rcard-icon" style="background:#dbeafe">🧠</div>
+      </div>
+      <div class="rcard-desc">Developing and applying deep learning models — including CNNs, Vision Transformers, and self-supervised learning — to problems in medical imaging (brain MRI atrophy detection), environmental science (deforestation prediction), and infrastructure (pothole recognition).</div>
+    </div>
+
+    <div class="rcard">
+      <div class="rcard-top">
+        <div class="rcard-title">Synthetic biology &amp; biocomputing</div>
+        <div class="rcard-icon" style="background:#dcfce7">🧬</div>
+      </div>
+      <div class="rcard-desc">Engineering genetic toggle switches in bacteria for digital biocomputing applications. Building and characterizing chromosomal and plasmid constructs using molecular cloning techniques, with potential applications in programmable therapeutics and biosensing.</div>
+    </div>
+
+    <div class="rcard">
+      <div class="rcard-top">
+        <div class="rcard-title">Bioinformatics &amp; multi-omics pipelines</div>
+        <div class="rcard-icon" style="background:#fef3c7">⚙️</div>
+      </div>
+      <div class="rcard-desc">Building reproducible pipelines for genomics, transcriptomics, and multi-omics data processing at early-stage biotech startups. Working with cloud infrastructure (AWS/GCP) to enable large-scale compute for production research deployments.</div>
+    </div>
+  </section>
+
+  <!-- ======== PUBLICATIONS ======== -->
+  <section class="sec" id="publications">
+    <h2>Publications</h2>
+    <p class="pub-note">For a complete list, see my <a href="https://www.linkedin.com/in/riya-sikand/">LinkedIn</a>. * = equal contribution.</p>
+
+    <div class="pub-yr">2023</div>
+
+    <div class="pub-row">
+      <div class="pub-thumb" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#fef9ec,#fde68a);font-size:22px">📜</div>
+      <div>
+        <div class="pub-title">The Founding Mother: Judith Sargent Murray and the Rights of Women in the Early American Republic</div>
+        <div class="pub-authors"><span class="me">Riya Sikand</span></div>
+        <div class="pub-venue">The Concord Review, Volume 34, Number 2, Winter 2023</div>
+        <div class="pub-btns"><a href="https://tinyurl.com/JSM-TCR-Paper" target="_blank" class="pbtn">Paper</a><a href="https://tinyurl.com/TCR-Notice-of-Publication" target="_blank" class="pbtn">Notice</a></div>
+      </div>
+    </div>
+
+    <div class="pub-row">
+      <div class="pub-thumb" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e0e7ff,#c7d2fe);font-size:22px">⚡</div>
+      <div>
+        <div class="pub-title">Application of Nanoimprint Lithography to Conducting Polymers for Infrared Photonics</div>
+        <div class="pub-authors"><span class="me">R. Sikand</span> et al.</div>
+        <div class="pub-venue">2023 IEEE MIT Undergraduate Research Technology Conference (URTC), Cambridge, MA</div>
+        <div class="pub-btns"><span class="pbtn">Paper</span><span class="pbtn">DOI</span></div>
+      </div>
+    </div>
+
+    <div class="pub-row">
+      <div class="pub-thumb" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#dcfce7,#bbf7d0);font-size:22px">🔬</div>
+      <div>
+        <div class="pub-title">PRMT-1 and p120-Catenin as EMT Mediators in Osimertinib Resistance in NSCLC</div>
+        <div class="pub-authors"><span class="me">R. Sikand</span> et al., Dr. Neelu Puri Lab</div>
+        <div class="pub-venue">MDPI Cancers — Women's Special Issues Series: Oncology, 2023</div>
+        <div class="pub-btns"><span class="pbtn">Paper</span></div>
+      </div>
+    </div>
+
+    <div class="pub-yr">CS Research Projects</div>
+
+    <div class="pub-row">
+      <div class="pub-thumb" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#fce7f3,#fbcfe8);font-size:22px">🛣️</div>
+      <div>
+        <div class="pub-title">SPOTNET: CNN-Based Pothole Recognition</div>
+        <div class="pub-authors"><span class="me">Riya Sikand</span></div>
+        <div class="pub-venue">2021 Regeneron ISEF Finalist</div>
+      </div>
+    </div>
+
+    <div class="pub-row">
+      <div class="pub-thumb" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ede9fe,#ddd6fe);font-size:22px">🧠</div>
+      <div>
+        <div class="pub-title">Vision Transformers for Brain Atrophy Recognition in MRIs</div>
+        <div class="pub-authors"><span class="me">Riya Sikand</span></div>
+        <div class="pub-venue">Independent research project</div>
+      </div>
+    </div>
+
+    <div class="pub-row">
+      <div class="pub-thumb" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#dcfce7,#bbf7d0);font-size:22px">🌳</div>
+      <div>
+        <div class="pub-title">Self-Supervised Learning for Deforestation Driver Prediction</div>
+        <div class="pub-authors"><span class="me">Riya Sikand</span></div>
+        <div class="pub-venue">Independent research project</div>
+      </div>
+    </div>
+
+    <div class="pub-row">
+      <div class="pub-thumb" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e0f2fe,#bae6fd);font-size:22px">🦾</div>
+      <div>
+        <div class="pub-title">GaitSense: A Novel, 3D-Printed PEDOT:PSS Piezoresistive Pressure Sensor for Gait Analysis</div>
+        <div class="pub-authors"><span class="me">Riya Sikand</span>, O'Carroll Research Group</div>
+        <div class="pub-venue">Rutgers University, 2023</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== AWARDS ======== -->
+  <section class="sec" id="awards">
+    <h2>Awards</h2>
+
+    <div class="award-group">Academic Honors</div>
+
+    <div class="award-row"><div class="award-left"><div class="award-name">John Harvard Scholar</div><div class="award-org">Harvard University, 2024–Present</div></div><span class="award-chev">›</span></div>
+
+    <div class="award-row" onclick="toggle(this)">
+      <div class="award-left"><div class="award-name">Regeneron ISEF Finalist</div><div class="award-org">Society for Science, 2021</div></div>
+      <span class="award-chev">›</span>
+    </div>
+    <div class="award-body">Selected as a finalist in the Regeneron International Science and Engineering Fair for SPOTNET, a CNN-based pothole recognition system — one of the most prestigious pre-college science competitions in the world.</div>
+
+    <div class="award-row"><div class="award-left"><div class="award-name">World Science Scholar</div><div class="award-org">World Science Festival</div></div><span class="award-chev">›</span></div>
+    <div class="award-row"><div class="award-left"><div class="award-name">Coca-Cola Scholars Semifinalist</div><div class="award-org">Coca-Cola Scholars Foundation</div></div><span class="award-chev">›</span></div>
+    <div class="award-row"><div class="award-left"><div class="award-name">Valedictorian</div><div class="award-org">Ranney School, 2024 · GPA: 102/100</div></div><span class="award-chev">›</span></div>
+
+    <div class="award-row" onclick="toggle(this)">
+      <div class="award-left"><div class="award-name">Published in The Concord Review</div><div class="award-org">The Concord Review</div></div>
+      <span class="award-chev">›</span>
+    </div>
+    <div class="award-body">The Concord Review is the only quarterly journal in the world to publish the academic history research papers of secondary students from around the world.</div>
+
+    <div class="award-group" style="margin-top:24px">Fellowships &amp; Programs</div>
+
+    <div class="award-row"><div class="award-left"><div class="award-name">Summer Immunology Program Scholar</div><div class="award-org">Harvard Medical School, 2025</div></div><span class="award-chev">›</span></div>
+
+    <div class="award-row" onclick="toggle(this)">
+      <div class="award-left"><div class="award-name">Harvard Undergraduate Clean Energy Group — Venture Fellow</div><div class="award-org">Harvard College</div></div>
+      <span class="award-chev">›</span>
+    </div>
+    <div class="award-body">Selected as a Venture Fellow to evaluate early-stage clean energy startups and support the group's investment and entrepreneurship programming.</div>
+
+    <div class="award-row"><div class="award-left"><div class="award-name">Peer Advising Fellow</div><div class="award-org">Harvard College</div></div><span class="award-chev">›</span></div>
+  </section>
+
+  <!-- ======== EXTRACURRICULARS ======== -->
+  <section class="sec" id="extracurriculars">
+    <h2>Extracurriculars</h2>
+
+    <!-- STARTUPS FIRST -->
+    <div class="ec-section-title">Startups</div>
+
+    <div class="ec-row">
+      <div class="ec-top"><span class="ec-name">Wedge (YC S25)</span><span class="ec-loc">Remote</span></div>
+      <div style="display:flex;justify-content:space-between"><span class="ec-role">Strategy &amp; Operations Lead</span><span class="ec-dates">November 2025 – February 2026</span></div>
+      <ul class="ec-bullets">
+        <li>Drive end-to-end strategy and operations for healthcare tech consulting platform connecting hospital systems with collegiate consultants nationwide</li>
+        <li>Lead cross-functional initiatives to scale AI-enabled clinic infrastructure; analyze KPIs to inform strategic planning</li>
+      </ul>
+    </div>
+
+    <div class="ec-row">
+      <div class="ec-top"><span class="ec-name">Novaflow (YC S25)</span><span class="ec-loc">Remote</span></div>
+      <div style="display:flex;justify-content:space-between"><span class="ec-role">Computational Biology Intern</span><span class="ec-dates">Summer 2026</span></div>
+      <ul class="ec-bullets">
+        <li>Built and maintained bioinformatics pipelines for genomics, transcriptomics, and multi-omics data processing</li>
+        <li>Assisted with cloud infrastructure on AWS/GCP; translated researcher needs into product roadmap decisions</li>
+      </ul>
+    </div>
+
+    <!-- VC SECOND -->
+    <div class="ec-section-title" style="margin-top:20px">Venture Capital &amp; Investing</div>
+
+    <div class="ec-row">
+      <div class="ec-top"><span class="ec-name">Harvard Undergraduate Capital Partners</span><span class="ec-loc">Cambridge, MA</span></div>
+      <div style="display:flex;justify-content:space-between"><span class="ec-role">Diligence Analyst</span><span class="ec-dates">August 2025 – Present</span></div>
+      <ul class="ec-bullets">
+        <li>Sourced and evaluated 50+ early-stage startups (Seed–Series A) across healthtech, diagnostics, and digital health</li>
+        <li>Developed data-driven investment theses incorporating market size, competitive landscape, unit economics, and GTM strategy</li>
+        <li>Performed financial due diligence including revenue model analysis, customer acquisition metrics, and cap table review</li>
+      </ul>
+    </div>
+
+    <div class="ec-row">
+      <div class="ec-top"><span class="ec-name">Harvard Institute of Politics GovLab</span><span class="ec-loc">Cambridge, MA</span></div>
+      <div style="display:flex;justify-content:space-between"><span class="ec-role">Director of Talent Strategy (Executive Board)</span><span class="ec-dates">September 2024 – Present</span></div>
+      <ul class="ec-bullets">
+        <li>Serve on executive board of Harvard's premier govtech startup incubator (HKS Institute of Politics), supporting 10 early-stage startups</li>
+        <li>Directed talent acquisition strategy across portfolio; planned and executed Pitch Day connecting founders with investors</li>
+      </ul>
+    </div>
+
+    <div class="ec-row">
+      <div class="ec-top"><span class="ec-name">Harvard Financial Analysts Club</span><span class="ec-loc">Cambridge, MA</span></div>
+      <div style="display:flex;justify-content:space-between"><span class="ec-role">Financial Analyst</span><span class="ec-dates">January 2025 – Present</span></div>
+      <ul class="ec-bullets">
+        <li>Developed DCF and comparable company valuation models across multiple sectors</li>
+        <li>Authored long/short equity research reports analyzing industry dynamics, competitive moats, and financial drivers</li>
+      </ul>
+    </div>
+
+    <!-- LEADERSHIP THIRD -->
+    <div class="ec-section-title" style="margin-top:20px">Leadership &amp; Organizations</div>
+
+    <div class="ec-row">
+      <div class="ec-top"><span class="ec-name">Harvard Undergraduate Biotechnology Club</span><span class="ec-loc">Cambridge, MA</span></div>
+      <div style="display:flex;justify-content:space-between"><span class="ec-role">President (Executive Board)</span><span class="ec-dates">September 2024 – Present</span></div>
+      <ul class="ec-bullets">
+        <li>Source and manage consulting engagements with early-stage biotech startups; secured 5+ client relationships</li>
+        <li>Lead corporate partnerships and speaker events connecting 300+ students with biotech industry leaders</li>
+      </ul>
+    </div>
+
+    <div class="ec-row">
+      <div class="ec-top"><span class="ec-name">Harvard Model Congress (HMC)</span><span class="ec-loc">Cambridge, MA</span></div>
+      <div style="display:flex;justify-content:space-between"><span class="ec-role">Presiding Officer (Executive Board)</span><span class="ec-dates">September 2024 – Present</span></div>
+      <ul class="ec-bullets">
+        <li>Lead technology operations for world's largest congressional simulation serving 2,000+ high school students annually</li>
+        <li>Spearheaded digital educational library and multimedia platform, increasing user engagement 40%</li>
+      </ul>
+    </div>
+
+    <div class="ec-row">
+      <div class="ec-top"><span class="ec-name">Harvard Tech4Social Good</span><span class="ec-loc">Cambridge, MA</span></div>
+      <div style="display:flex;justify-content:space-between"><span class="ec-role">UX Analyst / Tech Consultant</span><span class="ec-dates">January 2025 – Present</span></div>
+      <ul class="ec-bullets">
+        <li>Led complete website redesign for nonprofit client using Figma; conducted user interviews, prototyping, and usability testing</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:12px;padding:12px 16px;background:#f5f3ef;border-radius:8px;font-size:13px;color:#555;line-height:1.75">
+      <strong style="font-size:12px;color:#888;text-transform:uppercase;letter-spacing:0.04em">Additional Activities</strong><br>
+      Peer Advising Fellow · Harvard Undergraduate Clean Energy Group (Venture Fellow) · IOP Women in Leadership · Women in CS · Harvard Model UN India · The Crimson · Harvard MUN Boston/San Francisco/Europe
+    </div>
+
+    <div class="divhead" style="margin-top:28px">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Technical</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span><span class="skill-tag">Java</span><span class="skill-tag">C</span><span class="skill-tag">R</span><span class="skill-tag">SQL</span><span class="skill-tag">JavaScript</span><span class="skill-tag">HTML/CSS</span><span class="skill-tag">MATLAB</span><span class="skill-tag">Figma</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Machine Learning</div>
+        <div class="skill-tags">
+          <span class="skill-tag">CNNs</span><span class="skill-tag">Vision Transformers</span><span class="skill-tag">Self-Supervised Learning</span><span class="skill-tag">LLMs</span><span class="skill-tag">PyTorch</span><span class="skill-tag">Keras</span><span class="skill-tag">Scikit-Learn</span>
+        </div>
+      </div>
+      <div class="skill-group" style="grid-column:span 2">
+        <div class="skill-group-title">Finance &amp; Analysis</div>
+        <div class="skill-tags">
+          <span class="skill-tag">DCF Valuation</span><span class="skill-tag">Comparable Analysis</span><span class="skill-tag">Equity Research</span><span class="skill-tag">Market Sizing</span><span class="skill-tag">Excel (Advanced)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>&copy; 2026 Riya Sikand &middot; riyasikand@college.harvard.edu
+    &middot;  web design inspired by Ayush Noori
+  </footer>
+</div>
+
+<script>
+function toggle(row){
+  const body=row.nextElementSibling;
+  const chev=row.querySelector('.award-chev');
+  if(body&&body.classList.contains('award-body')){
+    const open=body.style.display==='block';
+    body.style.display=open?'none':'block';
+    chev.textContent=open?'›':'∨';
+  }
+}
+
+const sections=['bio','research','publications','awards','extracurriculars'];
+function onScroll(){
+  let cur='bio';
+  sections.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&el.getBoundingClientRect().top<70) cur=id;
+  });
+  document.querySelectorAll('nav ul a').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
+  });
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+
+document.querySelectorAll('nav ul a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.getElementById(a.getAttribute('href').slice(1));
+    if(t) t.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
 </body>
 </html>
